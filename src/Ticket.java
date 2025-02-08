@@ -16,7 +16,7 @@ public class Ticket {
     public String getTicketInfo() {
         return "Ticket ID: " + id +
                 " | Type: " + type +
-                " | Price: CHF " + price +
+                " | Price: CHF " + String.format("%.2f", price) +
                 " | Issued: " + issueDate;
     }
 
