@@ -8,28 +8,33 @@ public class Main {
         System.out.println("Welcome to SmartTicketIssuer!");
         System.out.println("Available Ticket Types: SINGLE_REDUCED, SINGLE_FULL, DAY_REDUCED, DAY_FULL");
 
-        //User selects ticket type
-        System.out.print("Enter ticket type: ");
-        String ticketTypeInput = scanner.nextLine().toUpperCase();
-        TicketType ticketType;
-
-        try {
-            ticketType = TicketType.valueOf(ticketTypeInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Invalid ticket type! Please enter a valid ticket type.");
-            return;
-        }
+        TicketType ticketType = safeParse(TicketType::valueOf, scanner, "Enter ticket type: ");
+        if (ticketType == null) return;
 
         // Issue ticket
-        TicketIssuer issuer = new TicketIssuer();
-        Ticket ticket = issuer.issueTicket(ticketType);
+        Ticket ticket = ticketIssuer.issueTicket(ticketType);
         System.out.println("Ticket Issued: " + ticket.getTicketInfo());
 
-        // Process payment
-        System.out.print("Enter your card number (16 digits): ");
-        String cardNumber = scanner.nextLine();
+        // Choose payment method
+        System.out.println("Select payment method: CREDIT_CARD, MOBILE_WALLET");
+        PaymentMethod paymentMethod = safeParse(PaymentMethod::valueOf, scanner, "Enter payment method: ");
+        if (paymentMethod == null) return;
 
-        if (PaymentProcessor.processPayment(cardNumber, ticket.getPrice())) {
+        // Assign correct payment processor
+        PaymentProcessor processor;
+        String paymentInfo;
+
+        if (paymentMethod == PaymentMethod.CREDIT_CARD) {
+            processor = new CreditCardProcessor();
+            System.out.print("Enter your card number (16 digits): ");
+            paymentInfo = scanner.nextLine();
+        } else {
+            processor = new MobileWalletProcessor();
+            System.out.print("Enter your mobile wallet ID (at least 6 alphanumeric characters): ");
+            paymentInfo = scanner.nextLine();
+        }
+
+        if (processor.processPayment(paymentInfo, ticket.getPrice())) {
             System.out.println("Payment processed. Enjoy your ride!");
         } else {
             System.out.println("Payment failed. Ticket purchase canceled.");
@@ -37,4 +42,16 @@ public class Main {
 
         scanner.close();
     }
+
+    // Private helper method for safe parsing using lambda
+    private static <T> T safeParse(InputParser<T> parser, Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        try {
+            return parser.parse(scanner.nextLine().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid input! Please try again.");
+            return null;
+        }
+    }
 }
+
