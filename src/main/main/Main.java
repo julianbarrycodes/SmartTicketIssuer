@@ -1,9 +1,8 @@
 package main.main;
 
-import main.ticketing.Ticket;
-import main.ticketing.TicketIssuer;
-import main.ticketing.TicketType;
-
+import main.ticketing.*;
+import main.payment.*;
+import main.utils.InputParser;
 import java.util.Scanner;
 
 public class Main {

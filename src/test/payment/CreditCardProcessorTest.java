@@ -2,6 +2,8 @@ package test.payment;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import main.payment.CreditCardProcessor;
+import main.payment.PaymentProcessor;
 
 public class CreditCardProcessorTest {
 
