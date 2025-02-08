@@ -3,10 +3,10 @@ package main.ticketing;
 import java.time.LocalDateTime;
 
 public class Ticket {
-    private String id;
-    private TicketType type;
-    private double price;
-    private LocalDateTime issueDate;
+    private final String id;
+    private final TicketType type;
+    private final double price;
+    private final LocalDateTime issueDate;
 
     public Ticket(String id, TicketType type) {
         this.id = id;
