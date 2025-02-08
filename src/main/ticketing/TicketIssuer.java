@@ -1,3 +1,5 @@
+package main.ticketing;
+
 import java.util.UUID;
 
 public class TicketIssuer {

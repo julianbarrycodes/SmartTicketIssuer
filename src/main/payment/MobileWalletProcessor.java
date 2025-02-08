@@ -1,3 +1,5 @@
+package main.payment;
+
 public class MobileWalletProcessor implements PaymentProcessor {
     @Override
     public boolean processPayment(String walletId, double amount) {

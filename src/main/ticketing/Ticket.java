@@ -1,3 +1,5 @@
+package main.ticketing;
+
 import java.time.LocalDateTime;
 
 public class Ticket {
@@ -14,7 +16,7 @@ public class Ticket {
     }
 
     public String getTicketInfo() {
-        return "Ticket ID: " + id +
+        return "main.ticketing.Ticket ID: " + id +
                 " | Type: " + type +
                 " | Price: CHF " + String.format("%.2f", price) +
                 " | Issued: " + issueDate;

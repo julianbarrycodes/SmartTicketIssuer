@@ -1,3 +1,9 @@
+package main.main;
+
+import main.ticketing.Ticket;
+import main.ticketing.TicketIssuer;
+import main.ticketing.TicketType;
+
 import java.util.Scanner;
 
 public class Main {
@@ -6,14 +12,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to SmartTicketIssuer!");
-        System.out.println("Available Ticket Types: SINGLE_REDUCED, SINGLE_FULL, DAY_REDUCED, DAY_FULL");
+        System.out.println("Available main.ticketing.Ticket Types: SINGLE_REDUCED, SINGLE_FULL, DAY_REDUCED, DAY_FULL");
 
         TicketType ticketType = safeParse(TicketType::valueOf, scanner, "Enter ticket type: ");
         if (ticketType == null) return;
 
         // Issue ticket
         Ticket ticket = ticketIssuer.issueTicket(ticketType);
-        System.out.println("Ticket Issued: " + ticket.getTicketInfo());
+        System.out.println("main.ticketing.Ticket Issued: " + ticket.getTicketInfo());
 
         // Choose payment method
         System.out.println("Select payment method: CREDIT_CARD, MOBILE_WALLET");
@@ -37,7 +43,7 @@ public class Main {
         if (processor.processPayment(paymentInfo, ticket.getPrice())) {
             System.out.println("Payment processed. Enjoy your ride!");
         } else {
-            System.out.println("Payment failed. Ticket purchase canceled.");
+            System.out.println("Payment failed. main.ticketing.Ticket purchase canceled.");
         }
 
         scanner.close();

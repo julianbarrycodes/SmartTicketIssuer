@@ -1,3 +1,5 @@
+package main.ticketing;
+
 public enum TicketType {
     SINGLE_REDUCED(2.20),
     SINGLE_FULL(3.20),

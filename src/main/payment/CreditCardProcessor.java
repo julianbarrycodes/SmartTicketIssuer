@@ -1,3 +1,5 @@
+package main.payment;
+
 public class CreditCardProcessor implements PaymentProcessor {
     @Override
     public boolean processPayment(String cardNumber, double amount) {
