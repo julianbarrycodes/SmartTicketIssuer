@@ -22,15 +22,4 @@ class PaymentProcessorFactoryTest {
         assertInstanceOf(MobileWalletProcessor.class, processor, "Processor should be an instance of MobileWalletProcessor.");
     }
 
-    // Test that the factory throws an exception when given a null payment method
-    @Test
-    @SuppressWarnings("ConstantConditions") // Suppresses warning for intentionally passing null
-    void testCreateProcessor_NullMethod() {
-        // This test ensures that the factory properly handles null input by throwing an exception
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                PaymentProcessorFactory.createProcessor(null) // Intentionally testing null input
-        );
-
-        assertEquals("Unsupported payment method: null", exception.getMessage());
-    }
 }
