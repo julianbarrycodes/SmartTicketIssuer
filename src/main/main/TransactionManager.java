@@ -64,7 +64,6 @@ public class TransactionManager {
                     Ticket ticket = ticketIssuer.issueTicket(ticketType);
                     System.out.println("Ticket Issued: " + ticket.getTicketInfo());
 
-                    scanner.close();
                     return; // Exit after a successful transaction
                 } else {
                     System.out.println("Payment failed. Try again or type EXIT to cancel.");
