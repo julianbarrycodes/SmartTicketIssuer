@@ -1,6 +1,7 @@
 package main.ticketing;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a public transport ticket.
@@ -31,7 +32,7 @@ public class Ticket {
         this.id = id;
         this.type = type;
         this.price = type.getPrice();
-        this.issueDate = LocalDateTime.now();
+        this.issueDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
 
     /**
@@ -40,7 +41,7 @@ public class Ticket {
      * @return A string containing the ticket ID, type, price, and issue date.
      */
     public String getTicketInfo() {
-        return "main.ticketing.Ticket ID: " + id +
+        return "Ticket ID: " + id +
                 " | Type: " + type +
                 " | Price: CHF " + String.format("%.2f", price) +
                 " | Issued: " + issueDate;
