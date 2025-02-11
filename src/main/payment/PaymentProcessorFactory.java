@@ -1,5 +1,7 @@
 package main.payment;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Factory class for creating {@link PaymentProcessor} instances based on the given {@link PaymentMethod}.
  */
@@ -12,18 +14,14 @@ public class PaymentProcessorFactory {
      * @return the appropriate {@link PaymentProcessor} instance.
      * @throws IllegalArgumentException if the {@code method} is {@code null} or unsupported.
      */
-    public static PaymentProcessor createProcessor(PaymentMethod method) {
+    public static PaymentProcessor createProcessor(@NotNull PaymentMethod method) {
         if (method == null) {
             throw new IllegalArgumentException("Unsupported payment method: null");
         }
 
-        switch (method) {
-            case CREDIT_CARD:
-                return new CreditCardProcessor();
-            case MOBILE_WALLET:
-                return new MobileWalletProcessor();
-            default:
-                throw new IllegalArgumentException("Unsupported payment method: " + method);
-        }
+        return switch (method) {
+            case CREDIT_CARD -> new CreditCardProcessor();
+            case MOBILE_WALLET -> new MobileWalletProcessor();
+        };
     }
 }
