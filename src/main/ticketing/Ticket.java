@@ -14,16 +14,24 @@ import java.time.temporal.ChronoUnit;
  * unchanged after creation.</p>
  */
 public class Ticket {
+
+    /** Unique identifier for the ticket. */
     private final String id;
+
+    /** The type of ticket, which determines its price and validity. */
     private final TicketType type;
+
+    /** The price of the ticket, determined by its type. */
     private final double price;
+
+    /** The timestamp of when the ticket was issued. */
     private final LocalDateTime issueDate;
 
     /**
      * Constructs a new ticket with a unique ID and a specified ticket type.
      *
      * <p>The ticket's price is determined by the {@link TicketType}, and the issue
-     * date is automatically set to the current timestamp.</p>
+     * date is automatically set to the current timestamp, truncated to minutes.</p>
      *
      * @param id   The unique identifier for the ticket.
      * @param type The type of ticket, which determines its price.
@@ -36,9 +44,12 @@ public class Ticket {
     }
 
     /**
-     * Retrieves the formatted ticket details.
+     * Retrieves the formatted ticket details as a string.
      *
-     * @return A string containing the ticket ID, type, price, and issue date.
+     * <p>The returned string includes the ticket ID, type, price (formatted to two decimal places),
+     * and the issue date.</p>
+     *
+     * @return A formatted string containing ticket details.
      */
     public String getTicketInfo() {
         return "Ticket ID: " + id +

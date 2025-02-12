@@ -11,6 +11,10 @@ import java.util.Scanner;
  */
 public class TransactionManager {
 
+    /**
+     * Scanner object for reading user input from the console.
+     * Used for handling ticket and payment-related interactions.
+     */
     private final Scanner scanner;
 
     /**
