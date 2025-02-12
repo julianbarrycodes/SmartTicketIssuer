@@ -46,7 +46,7 @@ SmartTicketIssuer/
 ```
 2.  Compile the Project
 ```sh
-    javac src/main/**/*.java -d out
+    javac $(find src/main -name "*.java") -d out
 ```
 3.  Run the Application
 ```sh
