@@ -11,14 +11,12 @@ import java.util.Scanner;
  */
 public class TransactionManager {
 
-    private final TicketIssuer ticketIssuer;
     private final Scanner scanner;
 
     /**
      * Initializes the TransactionManager with a TicketIssuer and a Scanner for user input.
      */
     public TransactionManager() {
-        this.ticketIssuer = new TicketIssuer();
         this.scanner = new Scanner(System.in);
     }
 
@@ -35,6 +33,7 @@ public class TransactionManager {
 
             // Step 2: Get the price of the selected ticket type
             double price = ticketType.getPrice();
+            System.out.println("Selected Ticket: " + ticketType + " | Price: CHF" + price);
 
             // Step 3: Select payment method
             PaymentMethod paymentMethod = getUserPaymentMethod();
@@ -61,6 +60,7 @@ public class TransactionManager {
                     System.out.println("Payment successful! Issuing your ticket...");
 
                     // Step 6: Issue the ticket only after payment
+                    TicketIssuer ticketIssuer = new TicketIssuer();
                     Ticket ticket = ticketIssuer.issueTicket(ticketType);
                     System.out.println("Ticket Issued: " + ticket.getTicketInfo());
 
@@ -81,7 +81,12 @@ public class TransactionManager {
      * @return The selected TicketType or null if the user exits.
      */
     private TicketType getUserTicketType() {
-        System.out.println("\nAvailable Ticket Types: SINGLE_REDUCED, SINGLE_FULL, DAY_REDUCED, DAY_FULL");
+        // Display available ticket types dynamically from the enum
+        System.out.println("\nAvailable Ticket Types: ");
+        for (TicketType type : TicketType.values()) {
+            System.out.println("- " + type + " (CHF " + type.getPrice() + ")");
+        }
+
         return getValidInput(
                 TicketType::valueOf,
                 "Enter ticket type (or type EXIT to quit): ",
@@ -95,7 +100,12 @@ public class TransactionManager {
      * @return The selected PaymentMethod or null if the user exits.
      */
     private PaymentMethod getUserPaymentMethod() {
-        System.out.println("\nSelect payment method: CREDIT_CARD, MOBILE_WALLET");
+        // Display available payment methods dynamically from the enum
+        System.out.println("\nSelect a payment method: ");
+        for (PaymentMethod method : PaymentMethod.values()) {
+            System.out.println("- " + method);
+        }
+
         return getValidInput(
                 PaymentMethod::valueOf,
                 "Enter payment method (or type EXIT to quit): ",
