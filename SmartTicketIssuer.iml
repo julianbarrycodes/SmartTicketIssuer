@@ -7,7 +7,8 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" name="junit.jupiter.api" level="project" />
-    <orderEntry type="library" name="jetbrains.annotations" level="project" />
+    <orderEntry type="library" exported="" name="junit.jupiter.api" level="project" />
+    <orderEntry type="library" exported="" name="jetbrains.annotations" level="project" />
+    <orderEntry type="library" name="realityforge.jetbrains.annotations" level="project" />
   </component>
 </module>
